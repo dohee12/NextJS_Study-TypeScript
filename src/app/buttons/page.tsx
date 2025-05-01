@@ -39,9 +39,11 @@ export default function Home() {
       </div>
       <div className="py-8">
         <div> CVA Button </div>
-        <CvaButton variant="solid" />
-        <CvaButton variant="surface" />
-        <CvaButton variant="soft" size={3} />
+        <CvaButton variant="solid">solid</CvaButton>
+        <CvaButton variant="surface">surface</CvaButton>
+        <CvaButton variant="soft" size={3}>
+          soft
+        </CvaButton>
       </div>
       <div className="">
         <Button variant="solid" size="4">
