@@ -15,15 +15,15 @@ export default function Home() {
     const [studentList, setStudentList] = useState([])
     const [schoolList, setSchoolList] = useState([])
 
-    // function getStudentList() {
-    //     api.get('/get-student-list').then(res => {
-    //         setStudentList(res.data)
-    //     }).catch(error => console.log(error))
-    // }
-
-    async function getStudentList() {
-        setStudentList((await api.get('/get-student-list')).data)
+    function getStudentList() {
+        api.get('/get-student-list').then(res => {
+            setStudentList(res.data)
+        }).catch(error => console.log(error))
     }
+
+    // async function getStudentList() {
+    //     setStudentList((await api.get('/get-student-list')).data)
+    // }
 
     function addStudent() {
         api.post('/add-student', {
