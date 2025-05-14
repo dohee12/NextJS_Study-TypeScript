@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Table,
   TableHeader,
@@ -7,8 +9,8 @@ import {
   TableBody,
   TableCell,
 } from "@/components/ui/table";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { Api } from "@/lib/api";
 
 interface Store {
   name: string;
@@ -19,9 +21,9 @@ interface Store {
 }
 
 export default function Home() {
-  const api = axios.create({
-    baseURL: "http://localhost:8080",
-  });
+  // const api = axios.create({
+  //   baseURL: "http://localhost:8080",
+  // });
 
   const [stores, setStores] = useState<Store[]>([]);
   const [stat, setStat] = useState<Map<string, number>>(new Map());
@@ -29,17 +31,19 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await api.get("/get-food-store", {
-          params: {
-            pIndex: 1,
-            pSize: 300,
-            SIGUN_NM: "",
-          },
-        });
-        setStores(res.data as Store[]);
+        // const res = await api.get("/get-food-store", {
+        //   params: {
+        //     pIndex: 1,
+        //     pSize: 300,
+        //     SIGUN_NM: "",
+        //   },
+        // });
+        const res = await Api().getStore(1, 300, "");
+
+        setStores(res as Store[]);
 
         const map = new Map<string, number>();
-        res.data.forEach((store) => {
+        res.forEach((store) => {
           const value = map.get(store.sigun);
           if (value) {
             map.set(store.sigun, value + 1);
